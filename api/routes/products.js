@@ -15,3 +15,21 @@ router.post('/', (req, res, next) => {
         author: "Avery"
     });
 });
+
+router.get('/:productId', (req, res, next) => {
+   const productId =  req.params.productId;
+   if(productId === 'media') {
+        res.status(200).json({
+            message: "I love you",
+            id: productId
+        });
+   }
+   else {
+        res.status(200).json({
+            message: "Hello, regular user",
+            id: productId
+        });
+   }
+});
+
+module.exports = router;
