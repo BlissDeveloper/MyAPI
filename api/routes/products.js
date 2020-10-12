@@ -47,7 +47,9 @@ router.post("/", (req, res, next) => {
 router.get("/:productId", (req, res, next) => {
   const productId = req.params.productId;
 
-  Product.findById(productId)
+  Product.find({
+    productId: productId
+  })
     .select("-_id -__v")
     .exec()
     .then((doc) => {
@@ -69,7 +71,9 @@ router.get("/:productId", (req, res, next) => {
     })
     .catch((err) => {
       console.log(err);
-      res.status(200).json(err);
+      res.status(200).json({
+        message: err.message
+      });
     });
 });
 
