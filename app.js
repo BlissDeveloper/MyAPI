@@ -10,13 +10,16 @@ const orderRoute = require("./api/routes/orders");
 mongoose.connect(
   "mongodb+srv://admin:" +
     process.env.MONGO_ATLAS_PW +
-    "@grocery-app.r6bk4.gcp.mongodb.net/" + process.env.DB_NAME +"?retryWrites=true&w=majority",
+    "@grocery-app.r6bk4.gcp.mongodb.net/" +
+    process.env.DB_NAME +
+    "?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   }
 );
 
+app.use('/uploads', express.static('uploads'));
 //Logging interceptor
 app.use(morgan("dev"));
 
@@ -51,9 +54,7 @@ app.use((req, res, next) => {
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.json({
-    error: {
-      message: error.message,
-    },
+    message: error.message
   });
 });
 
