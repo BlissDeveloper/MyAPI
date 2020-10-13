@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 
 const productRoute = require("./api/routes/products");
 const orderRoute = require("./api/routes/orders");
+const userRoute = require('./api/routes/users');
 
 mongoose.connect(
   "mongodb+srv://admin:" +
@@ -40,9 +41,11 @@ app.use((req, res, next) => {
   next();
 });
 
+//============================ROUTES================================
 app.use("/products", productRoute);
 app.use("/orders", orderRoute);
-
+app.use("/users", userRoute);
+//============================ROUTES================================
 //next() passes the variable to the next request
 app.use((req, res, next) => {
   const error = new Error("Not found");

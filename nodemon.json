@@ -1,6 +1,7 @@
 {
     "env": {
         "MONGO_ATLAS_PW": "mediatrixavery082616",
-        "DB_NAME": "grocery"
+        "DB_NAME": "grocery",
+        "JWT_KEY": "secret_key"
     }
 }
